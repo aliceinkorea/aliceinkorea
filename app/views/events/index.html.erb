@@ -1,0 +1,15 @@
+<div id='wrapper'>
+  <div id='hd'>
+  </div>
+  <div id='bd'>
+    <% if @events.blank? %>
+       There are currently no events
+    <% else %>
+       <% for event in @events %>
+         <%= render partial:'event', locals: {event: event} %>
+         <%= link_to 'Request Tickets', get_request_form_url(event), remote: true %>
+         <div id="<%='event_' + event.id.to_s + '_request_form' %>"></div>
+       <% end %>
+    <% end %>
+  </div>
+</div>

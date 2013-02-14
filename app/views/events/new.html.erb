@@ -1,0 +1,111 @@
+<%= form_for @event, :html => {:multipart => true} do |f| %>
+  
+  <!-- TITLE -->
+  <% if @event.errors[:title] %>
+    <div>
+      <%= @event.errors[:title].first %>
+    </div>
+  <% end %>
+  <div>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  
+  <!-- GENRE -->
+  <% if @event.errors[:genre] %>
+    <div>
+      <%= @event.errors[:genre].first %>
+    </div>
+  <% end %>
+  <div>
+    <%= f.label :genre %><br />
+    <%= f.select :genre, Event::GENRE %>
+  </div>
+  
+  <!-- PLACE -->
+  <% if @event.errors[:venue] %>
+    <div>
+      <%= @event.errors[:venue].first %>
+    </div>
+  <% end %>
+  <div>
+    <%= f.label :venue %><br />
+    <%= f.text_field :venue %>
+  </div>
+  
+  <% if @event.errors[:city] %>
+    <div>
+      <%= @event.errors[:city].first %>
+    </div>
+  <% end %>
+  <div>
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </div>
+  
+  <!-- TIME -->
+  <% if @event.errors[:start_date] %>
+    <div>
+      <%= @event.errors[:start_date].first %>
+    </div>
+  <% end %>
+  <div>
+    <%= f.label :start_date %><br />
+    <%= f.date_select :start_date, { include_blank: true, order: [:day, :month, :year], default: [day: '', month: '', year: ''] }  %>
+  </div>
+  <div>
+    <%= f.label :end_date %><br />
+    <%= f.date_select :end_date, { include_blank: true, order: [:day, :month, :year], default: [day: '', month: '', year: ''] } %>
+  </div>
+  
+  <!-- DETAILS -->
+  <% if @event.errors[:age_group] %>
+    <div>
+      <%= @event.errors[:age_group].first %>
+    </div>
+  <% end %>
+  <div>
+    <%= f.label :age_group %><br />
+    <%= f.text_field :age_group %>
+  </div>
+  
+  <div>
+    <%= f.label :run_time %><br />
+    <%= f.text_field :run_time %>
+  </div>
+  
+  <% if @event.errors[:description] %>
+    <div>
+      <%= @event.errors[:description].first %>
+    </div>
+  <% end %>
+  <div>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  
+  <!-- IMAGE -->
+  
+  <% if @event.errors[:image] %>
+    <div>
+      <%= @event.errors[:image].first %>
+    </div>
+  <% end %>
+  <% if @event.image_cache %>
+    <div>
+      <%= image_tag(admin_event_image_cache_url(:cache_id => @event.image_cache[/^[\d-]+/], :filename => 'poster_' + @event.image_cache[/[a-zA-Z0-9 _\.]+$/])) %>
+    </div>
+  <% end %>
+  <div>
+    <%= f.file_field :image %>
+  </div>
+  
+  <%= f.fields_for :tickets do |ff| %>
+    <div> 
+      <%= ff.label :title %>
+      <%= ff.text_field :title %>
+    </div>
+  <% end %>
+  <div><%= f.submit %></div>
+<% end %>
+      

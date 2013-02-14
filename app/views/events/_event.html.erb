@@ -1,0 +1,20 @@
+<div class='event_container'>
+  <div>
+    <%= image_tag event.image.url(:poster) %>
+  </div>
+  <div>
+    Title: <%= event.title %>
+  </div>
+  <div>
+    Venue: <%= event.venue %>
+  </div>
+  <div>
+    <%= event.start_date %>
+    <% if event.end_date %>
+      - <%= event.end_date %> 
+    <% end %>
+  </div>
+  <div>
+    <%= event.description %>
+  </div>
+</div>

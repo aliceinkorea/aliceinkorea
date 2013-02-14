@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    Hi, <%= @request.first_name %>!
+    <p>
+      I just received your request to get <%= @request.count %> ticket(s) for <%= @request.event.title %>.<br/>
+      Thanks again and I'll get back to you soon!
+    </p>
+    <p>- Alice</p>
+  </body>
+</html>

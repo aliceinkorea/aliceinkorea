@@ -1,0 +1,1 @@
+$("#<%='event_' + @event.id.to_s + '_request_form' %>").html("<%= escape_javascript(render partial:'form', locals: {event: @event}) %>")
