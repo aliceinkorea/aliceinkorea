@@ -1,0 +1,44 @@
+<div id='dashboard'>
+  <div id='events'>
+    <% if @events.blank? %>
+      There are currently no events to activate
+    <% else %>
+      <% for event in @events %>
+        <div><%= event.title %></div>
+        <div><%= event.status %></div>
+        <% if event.status == 'Not Active' %>
+          <div><%= link_to 'Preview', admin_preview_event_url(event) %></div>
+          <div><%= link_to 'Activate', admin_change_event_status_url(event, status:1), method: :post %></div>
+        <% elsif event.status == 'Active' %>
+          <div><%= link_to 'Deactivate', admin_change_event_status_url(event, status:0), method: :post %></div>
+          <div><%= link_to 'Close', admin_change_event_status_url(event, status:2), method: :post %></div>
+        <% elsif event.status == 'Closed' %>
+          <div><%= link_to 'Open', admin_change_event_status_url(event, status:0), method: :post %></div>
+        <% end %> 
+      <% end %>
+    <% end %>
+  </div>
+  <div id='requests'>
+    <% if @requests.blank? %>
+    There are currently no requests to process
+  <% else %>
+    <% for request in @requests %>
+      <div>Request #<%= request.id %></div>
+      <div><%= request.status %></div>
+      <div><%= request.full_name%> | <%= request.email %></div>
+      <div><%= request.event.title %> | <%= request.num_tickets %> Ticket(s)</div>
+      <% if request.message %>
+        <div><%= request.message %></div>
+      <% end %>
+      <% if request.status == 'Not Processed' %>
+        <div><%= link_to 'Initialize', admin_change_request_status_url(request, status:1), method: :post %></div>
+      <% elsif request.status == 'In Process' %>
+        <div><%= link_to 'Uninitialize', admin_change_request_status_url(request, status:0), method: :post %></div>
+        <div><%= link_to 'Close', admin_change_request_status_url(request, status:2), method: :post %></div>
+      <% elsif request.status == 'Closed' %>
+        <div><%= link_to 'Open', admin_change_request_status_url(request, status:0), method: :post %></div>
+      <% end %> 
+    <% end %>
+  <% end %>
+  </div>
+</div>

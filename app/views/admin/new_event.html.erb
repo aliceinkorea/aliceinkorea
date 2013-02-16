@@ -1,4 +1,4 @@
-<%= form_for @event, :html => {:multipart => true} do |f| %>
+<%= form_for @event, url: admin_create_event_url, html: {:multipart => true} do |f| %>
   
   <!-- TITLE -->
   <% if @event.errors[:title] %>
@@ -99,5 +99,13 @@
   <div>
     <%= f.file_field :image %>
   </div>
+  
+  <%= f.fields_for :tickets do |ff| %>
+    <div> 
+      <%= ff.label :title %>
+      <%= ff.text_field :title %>
+    </div>
+  <% end %>
   <div><%= f.submit %></div>
 <% end %>
+      

@@ -5,20 +5,20 @@ class CreateEvents < ActiveRecord::Migration
       t.string :title, null: false
       t.string :genre, null: false
       
-      t.string :venue, null: false
-      t.string :city, null: false
+      t.string :venue
+      t.string :city
       
-      t.date :start_date, null: false
+      t.date :start_date
       t.date :end_date
       
       
-      t.string :age_group, null: false
+      t.string :age_group
       t.integer :run_time
-      t.text :description, null: false
+      t.text :description
       
       t.string :image, null: false
       
-      t.boolean :is_open, null: false, default: false
+      t.string :status, null: false, default: Event::STATUS[0]
       
       t.timestamps
       

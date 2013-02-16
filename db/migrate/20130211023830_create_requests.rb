@@ -6,11 +6,11 @@ class CreateRequests < ActiveRecord::Migration
       t.string :last_name, null: false
       
       t.string :email, null: false
-      t.string :phone
       
-      t.integer :count, null: false
+      t.integer :num_tickets, null: false
       t.text :message
       
+      t.string :status, default: Request::STATUS[0]
       t.references :event, null: false
       t.timestamps
       

@@ -1,0 +1,2 @@
+<%= render partial: 'events/event', locals: {event: @event} %>
+<%= link_to 'Activate This Event', admin_change_event_status_url(@event, status:1), method: :post %>

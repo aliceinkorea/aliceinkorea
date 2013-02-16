@@ -14,31 +14,31 @@
 ActiveRecord::Schema.define(:version => 20130211023830) do
 
   create_table "events", :force => true do |t|
-    t.string   "title",                          :null => false
-    t.string   "genre",                          :null => false
-    t.string   "venue",                          :null => false
-    t.string   "city",                           :null => false
-    t.date     "start_date",                     :null => false
+    t.string   "title",                                 :null => false
+    t.string   "genre",                                 :null => false
+    t.string   "venue"
+    t.string   "city"
+    t.date     "start_date"
     t.date     "end_date"
-    t.string   "age_group",                      :null => false
+    t.string   "age_group"
     t.integer  "run_time"
-    t.text     "description",                    :null => false
-    t.string   "image",                          :null => false
-    t.boolean  "is_open",     :default => false, :null => false
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.text     "description"
+    t.string   "image",                                 :null => false
+    t.string   "status",      :default => "Not Active", :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
   end
 
   create_table "requests", :force => true do |t|
-    t.string   "first_name", :null => false
-    t.string   "last_name",  :null => false
-    t.string   "email",      :null => false
-    t.string   "phone"
-    t.integer  "count",      :null => false
+    t.string   "first_name",                               :null => false
+    t.string   "last_name",                                :null => false
+    t.string   "email",                                    :null => false
+    t.integer  "num_tickets",                              :null => false
     t.text     "message"
-    t.integer  "event_id",   :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "status",      :default => "Not Processed"
+    t.integer  "event_id",                                 :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
   end
 
   create_table "tickets", :force => true do |t|
@@ -47,11 +47,11 @@ ActiveRecord::Schema.define(:version => 20130211023830) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",              :default => "", :null => false
-    t.string   "encrypted_password", :default => "", :null => false
-    t.integer  "admin"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.string   "email",                             :null => false
+    t.string   "encrypted_password",                :null => false
+    t.integer  "admin",              :default => 0
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
   end
 
 end

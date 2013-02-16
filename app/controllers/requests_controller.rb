@@ -13,11 +13,6 @@ class RequestsController < ApplicationController
     @event_id = params[:event_id]
     @request.event_id = @event_id
     @request.save!
-    
-    if @request.errors.blank?
-      RequestMailer.confirm_request(@request).deliver
-    end
-    
     respond_to do |format|
       format.js
     end

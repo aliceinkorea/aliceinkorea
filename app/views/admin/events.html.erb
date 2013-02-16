@@ -1,0 +1,22 @@
+<div>
+  <%= link_to 'Create Event', admin_new_event_url %>
+</div>
+<div id='events'>
+  <% if @events.blank? %>
+    There are currently no events
+  <% else %>
+    <% for event in @events %>
+      <div><%= event.title %></div>
+      <div><%= event.status %></div>
+      <% if event.status == 'Not Active' %>
+        <div><%= link_to 'Preview', admin_preview_event_url(event) %></div>
+        <div><%= link_to 'Activate', admin_change_event_status_url(event, status:1), method: :post %></div>
+      <% elsif event.status == 'Active' %>
+        <div><%= link_to 'Deactivate', admin_change_event_status_url(event, status:0), method: :post %></div>
+        <div><%= link_to 'Close', admin_change_event_status_url(event, status:2), method: :post %></div>
+      <% elsif event.status == 'Closed' %>
+        <div><%= link_to 'Open', admin_change_event_status_url(event, status:0), method: :post %></div>
+      <% end %> 
+    <% end %>
+  <% end %>
+</div>

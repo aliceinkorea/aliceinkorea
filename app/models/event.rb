@@ -12,7 +12,15 @@ class Event < ActiveRecord::Base
                   
   mount_uploader :image, ImageUploader
   
-  GENRE = ['Concert', 'Musical', 'Exhibitions', 'Sports', 'Others']
+  STATUS = ['Not Active',
+            'Active', 
+            'Closed']
+            
+  GENRE = ['Concert', 
+           'Musical', 
+           'Exhibitions', 
+           'Sports', 
+           'Others']
                   
   validates_presence_of :title,
                         message: "Title can't be blank"
@@ -37,6 +45,12 @@ class Event < ActiveRecord::Base
   
   validates_presence_of :image,
                         message: "Image can't be blank"
-  
+                        
+  validates_inclusion_of :status, in: STATUS,
+                        message: "Invalid status"
+    
+  def is_active?
+    status == 'Active'
+  end
   
 end
