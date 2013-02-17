@@ -11,7 +11,7 @@ gem 'rmagick'
 gem 'carrierwave'
 gem 'devise'
 gem 'cancan'
-gem 'newrelic_rpm'
+gem 'newrelic_rpm', "~> 3.5.5.38"
 
 
 # Gems used only for assets and not required
