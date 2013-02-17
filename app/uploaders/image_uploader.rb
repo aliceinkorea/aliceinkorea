@@ -1,7 +1,6 @@
 # encoding: utf-8
 
 class ImageUploader < CarrierWave::Uploader::Base
-  storage :fog
   
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick
@@ -12,8 +11,8 @@ class ImageUploader < CarrierWave::Uploader::Base
   include Sprockets::Helpers::IsolatedHelper
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
+  #storage :file
+  storage :fog
   
   before :store, :remember_cache_id
   after :store, :delete_tmp_dir
