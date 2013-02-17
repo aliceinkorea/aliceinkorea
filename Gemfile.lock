@@ -150,6 +150,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 3.2.1)
   devise
+  fog
   jquery-rails
   newrelic_rpm (~> 3.5.5.38)
   pg
